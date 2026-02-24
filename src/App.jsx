@@ -3,9 +3,10 @@ import GameForm from './components/GameForm';
 import GamesTable from './components/GamesTable';
 import ChampionOverlay from './components/ChampionOverlay';
 import StatsChart from './components/StatsChart';
+import ChampionStatsModal from './components/ChampionStatsModal';
 import { LANES, RESULTS } from './constants/gameData';
 import styles from './App.module.css';
-import { PlusCircle, Download, Upload, Moon, Sun, Cloud, HardDrive } from 'lucide-react';
+import { PlusCircle, Download, Upload, Moon, Sun, Cloud, HardDrive, Flame, Zap, Trophy } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 function App() {
