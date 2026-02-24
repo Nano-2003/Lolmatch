@@ -1,0 +1,148 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.inner {
+  background: var(--bg-container);
+  border: 1px solid var(--border-glass);
+  backdrop-filter: var(--glass-blur);
+  border-radius: 24px;
+  width: 100%;
+  max-width: 600px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+}
+
+.header {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border-glass);
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.searchWrapper {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 14px;
+  color: var(--text-muted);
+}
+
+.search {
+  width: 100%;
+  background: var(--bg-input);
+  border: 1px solid var(--border-glass);
+  border-radius: 14px;
+  padding: 12px 12px 12px 42px;
+  color: var(--text-main);
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.search:focus {
+  border-color: var(--primary);
+  background: var(--bg-container);
+}
+
+.closeBtn {
+  background: var(--bg-input);
+  border: 1px solid var(--border-glass);
+  color: var(--text-muted);
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.closeBtn:hover {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--danger);
+  border-color: rgba(239, 68, 68, 0.2);
+}
+
+.grid {
+  flex: 1;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 15px;
+  padding: 24px;
+}
+
+.grid::-webkit-scrollbar {
+  width: 6px;
+}
+
+.grid::-webkit-scrollbar-thumb {
+  background: var(--border-glass);
+  border-radius: 10px;
+}
+
+.champ {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: var(--bg-card);
+  border: 1px solid transparent;
+}
+
+.champ:hover {
+  background: var(--border-glass);
+  border-color: var(--primary);
+  transform: translateY(-4px);
+}
+
+.champ img {
+  width: 64px;
+  height: 64px;
+  border-radius: 14px;
+  transition: transform 0.2s;
+}
+
+.champ:hover img {
+  transform: scale(1.05);
+}
+
+.champ span {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-main);
+  text-align: center;
+}
+
+.message {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 50px;
+  color: var(--text-muted);
+}

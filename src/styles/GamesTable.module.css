@@ -1,0 +1,213 @@
+.tableWrapper {
+  overflow-x: auto;
+  background: var(--bg-card);
+  border: 1px solid var(--border-glass);
+  border-radius: 20px;
+  margin-top: 20px;
+  box-shadow: var(--shadow-main);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.table th {
+  text-align: left;
+  padding: 16px;
+  color: var(--text-muted);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.8px;
+  border-bottom: 2px solid var(--border-glass);
+}
+
+.table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border-glass);
+  vertical-align: middle;
+  color: var(--text-main);
+}
+
+.champCell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.clickable {
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.clickable:hover {
+  transform: translateX(5px);
+  color: var(--primary);
+}
+
+.champIcon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.champCell span {
+  font-weight: 600;
+}
+
+.statsCell {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.kdaText {
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+}
+
+.ratioText {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.csText {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.laneIconImg {
+  width: 28px;
+  height: 28px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.expandBtn {
+  background: var(--bg-input);
+  border: 1px solid var(--border-glass);
+  color: var(--text-muted);
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.expandBtn:hover {
+  background: var(--border-glass);
+  color: var(--primary);
+}
+
+.expandedRow {
+  background: rgba(0, 170, 255, 0.05);
+}
+
+.detailsContent {
+  overflow: hidden;
+  background: var(--bg-input);
+  border-bottom: 1px solid var(--border-glass);
+}
+
+.detailsGrid {
+  padding: 24px;
+  display: grid;
+  grid-template-columns: 1fr 2fr 3fr;
+  gap: 24px;
+}
+
+.detailItem {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.detailLabel {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.detailValue {
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.tipText {
+  font-size: 0.85rem;
+  color: var(--success);
+  font-family: inherit;
+  line-height: 1.5;
+  padding: 10px 14px;
+  background: rgba(74, 222, 128, 0.1);
+  border-radius: 10px;
+  border-left: 4px solid var(--success);
+}
+
+.noteText {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.actionsCell {
+  display: flex;
+  gap: 8px;
+}
+
+.editBtn,
+.deleteBtn {
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.editBtn {
+  background: var(--bg-input);
+  color: var(--text-muted);
+  border: 1px solid var(--border-glass);
+}
+
+.editBtn:hover {
+  background: var(--text-muted);
+  color: var(--bg-body);
+}
+
+.deleteBtn {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--danger);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.deleteBtn:hover {
+  background: var(--danger);
+  color: white;
+}
+
+.lpTag {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.7rem;
+  margin-top: 2px;
+  opacity: 0.9;
+}

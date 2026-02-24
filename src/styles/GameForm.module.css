@@ -1,0 +1,200 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 24px;
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--bg-card);
+  padding: 24px;
+  border-radius: 20px;
+  border: 1px solid var(--border-glass);
+}
+
+.topRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+  padding: 10px 15px;
+  background: rgba(0, 170, 255, 0.05);
+  border-radius: 12px;
+  border: 1px solid rgba(0, 170, 255, 0.1);
+}
+
+.rankedCheck {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.rankedCheck input {
+  width: 18px !important;
+  height: 18px !important;
+  cursor: pointer;
+}
+
+.rankedCheck label {
+  cursor: pointer;
+  color: var(--primary) !important;
+  font-weight: 700 !important;
+}
+
+.lpField {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.lpInput {
+  width: 80px !important;
+  text-align: center;
+  padding: 5px !important;
+}
+
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field label,
+label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.laneIconsRow {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+
+.laneIconBtn {
+  background: var(--bg-input);
+  border: 1px solid var(--border-glass);
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 12px;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.laneIconBtn:hover {
+  background: var(--border-glass);
+}
+
+.laneIconBtn.selected {
+  background: rgba(0, 170, 255, 0.2);
+  border-color: var(--primary);
+  box-shadow: 0 0 10px rgba(0, 170, 255, 0.2);
+}
+
+.laneIconImg {
+  width: 28px;
+  height: 28px;
+  filter: grayscale(0.5);
+  transition: filter 0.2s;
+}
+
+.selected .laneIconImg {
+  filter: grayscale(0);
+}
+
+.kdaSection {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.kdaGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1.5fr;
+  gap: 10px;
+}
+
+.csWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.innerIcon {
+  position: absolute;
+  left: 10px;
+  color: var(--text-muted);
+}
+
+.csWrapper input {
+  padding-left: 32px !important;
+}
+
+.note {
+  resize: vertical;
+  min-height: 60px;
+  background: var(--bg-input);
+  border: 1px solid var(--border-glass);
+  color: var(--text-main);
+  padding: 12px;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  transition: border-color 0.2s;
+}
+
+.form input,
+.form select {
+  background: var(--bg-input);
+  border: 1px solid var(--border-glass);
+  color: var(--text-main);
+  padding: 10px 12px;
+  border-radius: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
+  font-size: 0.95rem;
+  transition: border-color 0.2s;
+}
+
+.form input:focus,
+.form select:focus,
+.note:focus {
+  border-color: var(--primary);
+}
+
+.buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.submitBtn {
+  flex: 2;
+  background: var(--primary) !important;
+  color: white !important;
+  font-weight: 700 !important;
+  padding: 12px !important;
+  border: none !important;
+}
+
+.submitBtn:hover {
+  background: var(--primary-hover) !important;
+}
+
+.cancelBtn {
+  flex: 1;
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-glass) !important;
+  color: var(--text-main) !important;
+}

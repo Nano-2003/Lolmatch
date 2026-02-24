@@ -1,0 +1,179 @@
+.container {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 30px;
+  border-radius: 24px;
+  background: var(--bg-container);
+  border: 1px solid var(--border-glass);
+  backdrop-filter: var(--glass-blur);
+  box-shadow: var(--shadow-main);
+  color: var(--text-main);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.title {
+  text-align: center;
+  font-weight: 800;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  background: linear-gradient(135deg, var(--primary), #005577);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.statsBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+  padding: 15px 25px;
+  border-radius: 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-glass);
+  font-size: 1rem;
+}
+
+.button {
+  padding: 10px 20px;
+  border-radius: 12px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-card);
+  color: var(--text-main);
+  border: 1px solid var(--border-glass);
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  background: var(--border-glass);
+}
+
+.primary {
+  background: var(--primary);
+  color: white;
+  border: none;
+}
+
+.primary:hover {
+  background: var(--primary-hover);
+}
+
+.secondary {
+  background: var(--success);
+  color: white;
+  border: none;
+}
+
+.dropbox {
+  background: #0061ff;
+  color: white;
+  border: none;
+}
+
+.themeToggle {
+  background: var(--bg-card);
+}
+
+.filters {
+  display: flex;
+  gap: 10px;
+}
+
+.input,
+.select {
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border-glass);
+  background: var(--bg-input);
+  color: var(--text-main);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.input:focus,
+.select:focus {
+  border-color: var(--primary);
+}
+
+.streakBadge {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255, 145, 0, 0.15);
+  padding: 5px 12px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 145, 0, 0.3);
+  font-weight: 800;
+  color: #ff9100;
+  font-size: 1.2rem;
+}
+
+.powerPicks {
+  background: rgba(0, 170, 255, 0.05);
+  border: 1px solid rgba(0, 170, 255, 0.1);
+  border-radius: 15px;
+  padding: 12px;
+  margin-bottom: 24px;
+}
+
+.powerTitle {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #00aaff;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.powerList {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.powerItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 6px 12px;
+  border-radius: 10px;
+}
+
+.powerItem img {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+}
+
+.powerInfo {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.powerInfo div {
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.highWinrate {
+  color: #4ade80;
+}
