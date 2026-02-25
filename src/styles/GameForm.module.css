@@ -198,13 +198,33 @@ label {
   border: 1px solid var(--border-glass) !important;
   color: var(--text-main) !important;
 }
+
 .aiInsight {
   background: linear-gradient(135deg, rgba(0, 170, 255, 0.12), rgba(124, 58, 237, 0.12));
   border: 1px solid rgba(0, 170, 255, 0.25);
-  border-radius: 12px;
-  padding: 12px;
+  border-radius: 14px;
+  padding: 14px;
   display: flex;
   flex-direction: column;
+  gap: 10px;
+}
+
+.aiInsight.positive {
+  border-color: rgba(74, 222, 128, 0.4);
+}
+
+.aiInsight.neutral {
+  border-color: rgba(251, 191, 36, 0.4);
+}
+
+.aiInsight.info {
+  border-color: rgba(0, 170, 255, 0.35);
+}
+
+.aiHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   gap: 8px;
 }
 
@@ -217,11 +237,59 @@ label {
   font-size: 0.9rem;
 }
 
+.aiBadge {
+  border: 1px solid var(--border-glass);
+  background: rgba(255, 255, 255, 0.05);
+  font-size: 0.75rem;
+  padding: 4px 8px;
+  border-radius: 999px;
+  color: var(--text-main);
+}
+
+.aiHeadline {
+  margin: 0;
+  font-weight: 600;
+  color: var(--text-main);
+  font-size: 0.92rem;
+}
+
+.aiMetrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.metricCard {
+  border: 1px solid var(--border-glass);
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 10px;
+  padding: 8px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+}
+
+.metricCard b {
+  font-size: 0.85rem;
+}
+
 .aiInsight p {
   margin: 0;
   font-size: 0.88rem;
   color: var(--text-main);
   line-height: 1.4;
+}
+
+.aiChecklist {
+  margin: 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: var(--text-muted);
+  font-size: 0.82rem;
 }
 
 .applySuggestionBtn {
@@ -240,4 +308,24 @@ label {
 .applySuggestionBtn:hover {
   background: var(--primary);
   color: #fff;
+}
+
+@media (max-width: 760px) {
+  .grid2 {
+    grid-template-columns: 1fr;
+  }
+
+  .kdaGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .topRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .aiMetrics {
+    grid-template-columns: 1fr;
+  }
 }
