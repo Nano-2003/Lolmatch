@@ -328,6 +328,7 @@ function App() {
         showOverlay={showOverlay}
         formValues={formValues}
         setFormValues={setFormValues}
+        games={games}
       />
 
       <h2 style={{ textAlign: 'center', margin: '30px 0 20px', color: theme === 'dark' ? '#00aaff' : '#005577' }}>Mis Partidas</h2>
