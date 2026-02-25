@@ -198,3 +198,46 @@ label {
   border: 1px solid var(--border-glass) !important;
   color: var(--text-main) !important;
 }
+.aiInsight {
+  background: linear-gradient(135deg, rgba(0, 170, 255, 0.12), rgba(124, 58, 237, 0.12));
+  border: 1px solid rgba(0, 170, 255, 0.25);
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.aiInsightTitle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  color: var(--primary);
+  font-size: 0.9rem;
+}
+
+.aiInsight p {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--text-main);
+  line-height: 1.4;
+}
+
+.applySuggestionBtn {
+  align-self: flex-start;
+  border: 1px solid var(--primary);
+  background: transparent;
+  color: var(--primary);
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.applySuggestionBtn:hover {
+  background: var(--primary);
+  color: #fff;
+}
