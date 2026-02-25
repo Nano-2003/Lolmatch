@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import styles from '../styles/GameForm.module.css';
 import { LANES, RESULTS } from '../constants/gameData';
-import { Clock, Sword, UserX, MessageSquare, Target, Trophy } from 'lucide-react';
+import { Clock, Sword, UserX, MessageSquare, Target, Trophy, Sparkles, Gauge, ShieldAlert, Flag } from 'lucide-react';
 
 import topIcon from '../assets/roles/top.png';
 import jungleIcon from '../assets/roles/jungle.png';
@@ -17,7 +17,7 @@ const laneIcons = {
   Soporte: supportIcon,
 };
 
-export default function GameForm({ onSubmit, editingGame, onCancel, showOverlay, formValues, setFormValues }) {
+export default function GameForm({ onSubmit, editingGame, onCancel, showOverlay, formValues, setFormValues, games }) {
   useEffect(() => {
     if (editingGame) {
       setFormValues(editingGame);
@@ -26,7 +26,7 @@ export default function GameForm({ onSubmit, editingGame, onCancel, showOverlay,
 
   const handleChange = e => {
     const { name, value, type, checked } = e.target;
-    const finalValue = type === 'checkbox' ? checked : (type === 'number' ? parseInt(value) || 0 : value);
+    const finalValue = type === 'checkbox' ? checked : (type === 'number' ? parseInt(value, 10) || 0 : value);
     setFormValues({ ...formValues, [name]: finalValue });
   };
 
@@ -37,6 +37,81 @@ export default function GameForm({ onSubmit, editingGame, onCancel, showOverlay,
       return;
     }
     onSubmit(formValues);
+  };
+
+  const aiInsight = useMemo(() => {
+    const champion = formValues.champion?.trim().toLowerCase();
+    if (!champion || !Array.isArray(games) || games.length === 0) return null;
+
+    const championGames = games.filter(g => g.champion?.trim().toLowerCase() === champion);
+    if (championGames.length < 2) {
+      return {
+        type: 'info',
+        headline: 'Aún hay poca data para este campeón',
+        recommendation: 'Registra al menos 2 partidas más para recibir recomendaciones confiables.',
+      };
+    }
+
+    const wins = championGames.filter(g => g.result?.startsWith('gane')).length;
+    const winrate = Math.round((wins / championGames.length) * 100);
+    const avgCs = Math.round(championGames.reduce((sum, g) => sum + (g.cs || 0), 0) / championGames.length);
+    const avgDeaths = +(championGames.reduce((sum, g) => sum + (g.deaths || 0), 0) / championGames.length).toFixed(1);
+
+    const avgDurationSeconds = championGames
+      .map(g => {
+        const [m = 0, s = 0] = String(g.duration || '').split(':').map(n => parseInt(n, 10));
+        return Number.isNaN(m) ? null : (m * 60 + (Number.isNaN(s) ? 0 : s));
+      })
+      .filter(v => typeof v === 'number' && !Number.isNaN(v));
+
+    const avgDurationMin = avgDurationSeconds.length
+      ? Math.round(avgDurationSeconds.reduce((a, b) => a + b, 0) / avgDurationSeconds.length / 60)
+      : null;
+
+    const csGoal = avgCs > 0 ? avgCs + 10 : null;
+
+    const checklist = [];
+    if (winrate < 50) {
+      checklist.push('Juega fase de líneas más segura y evita pelear sin visión.');
+    } else {
+      checklist.push('Con ventaja, fuerza objetivos antes que kills sueltas.');
+    }
+
+    if (avgDeaths >= 6) {
+      checklist.push('Tu promedio de muertes es alto: respeta cooldowns clave antes de tradear.');
+    }
+
+    if (csGoal) {
+      checklist.push(`Meta de farmeo sugerida para esta partida: ${csGoal} CS.`);
+    }
+
+    if (avgDurationMin) {
+      checklist.push(`Tus partidas suelen durar ${avgDurationMin} min; planifica pico de poder para mid game.`);
+    }
+
+    const recommendation = checklist.slice(0, 2).join(' ');
+
+    return {
+      type: winrate >= 55 ? 'positive' : 'neutral',
+      headline: `${championGames.length} partidas con ${formValues.champion} · ${winrate}% WR`,
+      recommendation,
+      metrics: {
+        winrate,
+        games: championGames.length,
+        avgDeaths,
+        avgCs,
+        avgDurationMin,
+      },
+      checklist,
+    };
+  }, [formValues.champion, games]);
+
+  const applySuggestionToTip = () => {
+    if (!aiInsight?.recommendation) return;
+    setFormValues({
+      ...formValues,
+      matchupTip: formValues.matchupTip ? `${formValues.matchupTip} | ${aiInsight.recommendation}` : aiInsight.recommendation
+    });
   };
 
   return (
@@ -136,6 +211,54 @@ export default function GameForm({ onSubmit, editingGame, onCancel, showOverlay,
       </div>
 
       <label><MessageSquare size={14} /> Tip Matchup (Consejo clave):</label>
+
+      {aiInsight && (
+        <section className={`${styles.aiInsight} ${styles[aiInsight.type] || ''}`}>
+          <div className={styles.aiHeader}>
+            <div className={styles.aiInsightTitle}>
+              <Sparkles size={14} /> Recomendación IA
+            </div>
+            <span className={styles.aiBadge}>{aiInsight.type === 'positive' ? 'Buen momento' : aiInsight.type === 'neutral' ? 'Ajuste fino' : 'Recolectando data'}</span>
+          </div>
+
+          <p className={styles.aiHeadline}>{aiInsight.headline}</p>
+
+          {aiInsight.metrics && (
+            <div className={styles.aiMetrics}>
+              <div className={styles.metricCard}>
+                <Gauge size={14} />
+                <span>WR</span>
+                <b>{aiInsight.metrics.winrate}%</b>
+              </div>
+              <div className={styles.metricCard}>
+                <Flag size={14} />
+                <span>CS prom.</span>
+                <b>{aiInsight.metrics.avgCs}</b>
+              </div>
+              <div className={styles.metricCard}>
+                <ShieldAlert size={14} />
+                <span>Muertes prom.</span>
+                <b>{aiInsight.metrics.avgDeaths}</b>
+              </div>
+            </div>
+          )}
+
+          <p>{aiInsight.recommendation}</p>
+
+          {!!aiInsight.checklist?.length && (
+            <ul className={styles.aiChecklist}>
+              {aiInsight.checklist.slice(0, 3).map(item => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          )}
+
+          <button type="button" className={styles.applySuggestionBtn} onClick={applySuggestionToTip}>
+            Usar recomendación en tip
+          </button>
+        </section>
+      )}
+
       <textarea
         name="matchupTip"
         value={formValues.matchupTip || ''}
